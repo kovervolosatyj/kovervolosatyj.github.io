@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gasanova Ayzanat - Portfolio</title>
+    <!-- ПОДКЛЮЧАЕМ НАШ ФАЙЛ СО СТИЛЯМИ CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка профиля -->
+    <div class="header-section">
+        <img src="me.jpg" alt="Gasanova Ayzanat" class="avatar">
+        <div class="profile-info">
+            <h1>Gasanova Ayzanat</h1>
+            <p>Unreal Engine Developer • Game Designer • 3D Artist</p>
+            <p>23.10.2006 • she/her • rus/eng</p>
+        </div>
+        <!-- ДОБАВЛЯЕМ ЖИВОГО ПРИЗРАКА 👻 -->
+        <div class="header-ghost" onclick="popGhost()">👻</div>
+        </div>
+
+    <!-- Фиолетовое меню -->
+    <div class="nav-bar">
+        <button class="nav-btn active" onclick="switchTab('about')">About me</button>
+        <button class="nav-btn" onclick="switchTab('portfolio')">Portfolio</button>
+        <button class="nav-btn" onclick="switchTab('contacts')">Contacts</button>
+    </div>
+
+    <!-- Основной контейнер контента -->
+    <div class="main-content">
+
+        <!-- БЛОК: Обо мне -->
+        <div id="about" class="content-block active">
+            <div class="about-text">
+                <h2>About me</h2>
+                <p>Game Design student at HSE University with experience in Unreal Engine 5 development. I enjoy creating gameplay systems, AI behaviors, and interactive mechanics while collaborating closely with artists and designers.</p>
+            </div>
+        </div>
+
+        <!-- БЛОК: Витрина Портфолио -->
+        <div id="portfolio" class="content-block">
+            <div class="portfolio-grid">
+
+                <div class="project-card" onclick="openProject('dustborn')">
+                    <div class="cover-wrapper">
+                        <img src="dustborn.jpg" alt="Dustborn" class="project-cover">
+                    </div>
+                    <div class="project-info">
+                        <h3>Dustborn</h3>
+                        <p>3D side-scroller platformer. A small but ambitious piece of dust named Zhora should become as big as possible.</p>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProject('heatpaw')">
+                    <div class="cover-wrapper">
+                        <img src="heatpaw.jpg" alt="Heatpaw" class="project-cover">
+                    </div>
+                    <div class="project-info">
+                        <h3>Heatpaw</h3>
+                        <p>A 3D isometric puzzle game about an emo hamster that needs to walk along paths of different temperatures.</p>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProject('dr-futura')">
+                    <div class="cover-wrapper">
+                        <img src="dr%20futura.jpeg" alt="Dr Futura" class="project-cover">
+                    </div>
+                    <div class="project-info">
+                        <h3>Dr Futura</h3>
+                        <p>First-person shooter. A smart zombie, Dr Futura takes over the lab. Dr turns everyone into his own kind.</p>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProject('brainiac')">
+                    <div class="cover-wrapper">
+                        <img src="brainiac.jpg" alt="Brainiac" class="project-cover">
+                    </div>
+                    <div class="project-info">
+                        <h3>Brainiac</h3>
+                        <p>Dynamic 3D slasher. You are a brainless emo zombie who dreams of surviving a school day.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ВНУТРЕННИЕ СТРАНИЦЫ ПРОЕКТОВ -->
+
+        <div id="project-dustborn" class="content-block">
+            <button class="back-btn" onclick="switchTab('portfolio')">← Back</button>
+            <div class="single-project-view">
+                <div class="left-column">
+                    <img src="dustborn.jpg" class="project-cover-large">
+                    <div class="links-row">
+                        <a href="https://drive.google.com/file/d/1nEao_BPziJV9YKkTKKk7QpFwqew_HNOb/view?usp=drive_link" target="_blank" class="action-link">build</a>
+                        <a href="https://kinescope.io/qe2U1qagYZkE9Ew9BXvQCs" target="_blank" class="action-link">trailer</a>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <h2>Dustborn</h2>
+                    <h4>My Work</h4>
+                    <div class="work-item">
+                        <p><b>Character Absorption Mechanics and Scale Alteration</b></p>
+                        <p>Technical Breakdown: Implemented a real-time absorption mechanic that queries collided actors. Upon overlapping with a "Dust" subclass, the system increments the Character Scale 3D by a factor of 1.2x via a Timeline component for smooth visual interpolation. </p>
+                        <img src="scaling.gif" class="gif-placeholder">
+                    </div>
+                    <div class="work-item">
+                        <p><b>Character Movement Component Tuning & Environmental Hazards</b></p>
+                        <p>Custom handling of the Character Movement Component. Entering the "Cobweb" volume dynamically alters Max Walk Speed by a factor of 0.5. For the "Fly" platform, an optimized looping Timer by Event tracks player presence; if the character stays registered on the moving platform's collision box for >5 seconds, a scale-reduction event triggers sequentially.</p>
+                        <img src="hazard.gif" class="gif-placeholder">
+                        <img src="dynamic.gif" class="gif-placeholder">
+                    </div>
+                    <div class="work-item">
+                        <p><b>Physics-Based Jump Modifiers & Dynamic Platforms</b></p>
+                        <p>Leveraged physical interactions with static and simulated meshes. Props like the "Ruler" and "Dresser" act as programmatic launchpads. Upon collision validation, the player class executes the Launch Character function with an overridden Jump Z Velocity multiplied by 3x or 4x respectively, bypassing standard gravity scales. Interacting with the "Pot" utilizes an InterpTo-driven moving platform that functions as a physics lift.</p>
+                        <img src="ruler.gif" class="gif-placeholder">
+                        <img src="pot.gif" class="gif-placeholder">
+                    </div>
+                    <div class="work-item">
+                        <p><b>Custom State-Saving & Checkpoint Teleportation</b></p>
+                        <p> To handle player failure conditions—such as falling into "Clean Zones"—I implemented a transform caching system. Every successful dust absorption event stores the current actor's World Transform into a LastValidCheckpoint variable. Falling into an obstacle resets the character state by calling Set Actor Transform to teleport the player back instantly.</p>
+                        <img src="checkpoint.gif" class="gif-placeholder">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="project-heatpaw" class="content-block">
+            <button class="back-btn" onclick="switchTab('portfolio')">← Back</button>
+            <div class="single-project-view">
+                <div class="left-column">
+                    <img src="heatpaw.jpg" class="project-cover-large">
+                    <div class="links-row">
+                        <a href="https://disk.360.yandex.ru/d/xeQLKHbFTF8mSw" target="_blank" class="action-link">build</a>
+                        <a href="https://kinescope.io/4pz75fNwKPhxXG1fiXme2k" target="_blank" class="action-link">trailer</a>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <h2>Heatpaw</h2>
+                    <h4>My Work</h4>
+                    <div class="work-item">
+                        <p><b>Temperature-Driven State Machine & Material Parameter Collections</b></p>
+                        <p>Developed a core gameplay loop tied to the character's thermal state. The character actor constantly samples the underlying tile data (OnComponentBeginOverlap) to check its color and temperature properties. Sudden temperature spikes or drops adjust a global temperature float variable. This variable drives an Animation State Machine and updates a Material Parameter Collection (MPC) to dynamically change the color of the character’s hair mesh in real-time.</p>
+                        <img src="temp.gif" class="gif-placeholder">
+                    </div>
+                    <div class="work-item">
+                        <p><b>Environmental Hazards & Niagara Particle Interactors</b></p>
+                        <p>Engineered "Hot and Cold Stream" hazard mechanics using Niagara Particle Systems. These volumetric streams can either damage the player or assist them in reaching high-tier platforms depending on the movement vector. Implemented specialized collision channels for Niagara particles, enabling them to interact with the character capsule and increment/decrement the temperature state array by exactly ± 1 degree upon collision.</p>
+                        <img src="niagara.gif" class="gif-placeholder">
+                    </div>
+                    <div class="work-item">
+                        <p><b>Modular UI-Flow & State Management</b></p>
+                        <p>Designed and programmed a comprehensive UI architecture handling Main Menu, Level Selection, Pause, and Level Complete screens. Built using UMG (Unreal Motion Graphics), the system manages game states globally, keeping track of score parameters (Stars collected).</p>
+                        <img src="ui.gif" class="gif-placeholder">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <!-- Проект: DR FUTURA -->
+        <div id="project-dr-futura" class="content-block">
+            <button class="back-btn" onclick="switchTab('portfolio')">← Back</button>
+            <div class="single-project-view">
+                <div class="left-column">
+                    <img src="dr%20futura.jpeg" class="project-cover-large">
+                    <div class="links-row">
+                        <a href="https://google.com" target="_blank" class="action-link">build</a>
+                        <a href="https://kinescope.io" target="_blank" class="action-link">trailer</a>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <h2>Dr Futura</h2>
+                    <h4>My Work</h4>
+                    <div class="work-item">
+                        <p><b>Modular Weapon System & Multi-Type Projectile Logic</b></p>
+                        <p>Engineered a robust, scalable firing system for multiple weapon classes (Shotgun, Assault Rifle, Sniper Rifle) using data-driven design. Programmed distinct ballistic logic for two separate ammunition matrices using structural profiling: Damage Projectiles (dealing structural health reduction) and Infection Ampoules (applying status effects without base damage values).</p>
+
+                        <div class="gif-slider-container">
+                            <div class="gif-slider-wrapper">
+                                <img src="shotgun.gif" class="slider-gif-item active">
+                                <img src="auto.gif" class="slider-gif-item">
+                                <img src="snip.gif" class="slider-gif-item">
+                            </div>
+                            <button class="gif-slider-btn prev-gif-btn" onclick="changeGifSlide(-1)">&#10094;</button>
+                            <button class="gif-slider-btn next-gif-btn" onclick="changeGifSlide(1)">&#10095;</button>
+                            <div class="gif-slider-dots">
+                                <span class="gif-dot active" onclick="setGifSlide(0)"></span>
+                                <span class="gif-dot" onclick="setGifSlide(1)"></span>
+                                <span class="gif-dot" onclick="setGifSlide(2)"></span>
+                            </div>
+                        </div>
+                        <img src="shots.gif" class="gif-placeholder">
+                    </div>
+                    <div class="work-item">
+                        <p><b>Time-Critical Infection Framework & Health Systems</b></p>
+                        <p>Programmed a modular health component that controls vital states for both the player and enemy entities. Developed a unique Downed State system for human NPCs: when health attributes drop to exactly 0 HP, a critical 3-second runtime countdown is initialized. If intersected by an infection ampoule within this window, a dynamic subclass swap replaces the active pawn archetype with a controllable Zombie minion class.</p>
+                        <img src="bullets.gif" class="gif-placeholder">
+                        <img src="health.gif" class="gif-placeholder">
+                        <img src="folow.gif" class="gif-placeholder">
+                    </div>
+                    <div class="work-item">
+                        <p><b>Technical Art Pipeline: Asset Integration, Niagara FX & Custom UI</b></p>
+                        <p>Successfully implemented the art asset workflow by setting up weapon models, textures, and importing custom first-person/third-person rigging and animations. Authored spatial VFX inside Niagara Particle Systems to handle projectile impacts, environmental toxic barrel explosions, and healing radiuses. Designed the player HUD using UMG Widget Blueprints, featuring reactive hit markers, screen-space progress sliders, and fluid state change animations.</p>
+                        <img src="anim.gif" class="gif-placeholder">
+                        <img src="exp.gif" class="gif-placeholder">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Проект: BRAINIAC -->
+        <div id="project-brainiac" class="content-block">
+            <button class="back-btn" onclick="switchTab('portfolio')">← Back</button>
+            <div class="single-project-view">
+                <div class="left-column">
+                    <img src="brainiac.jpg" class="project-cover-large">
+                    <div class="links-row">
+                        <a href="https://kinescope.io/5uMaaitNx3cPjJd7679NaB" target="_blank" class="action-link">build</a>
+                        <a href="https://disk.360.yandex.ru/d/_5nfAWjmATq9OQ" target="_blank" class="action-link">trailer</a>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <h2>Brainiac</h2>
+                    <h4>My Work</h4>
+                    <div class="work-item">
+                        <p><b>Modular Dual-Slot Character State System</b></p>
+                        <p>Engineered the game's core architecture by programming a data-driven Dual-Slot Inventory System to manage character stances. The primary slot determines active traversal abilities and locomotion meshes, while the secondary slot manages weapon classes and attack logic. Developed runtime validation arrays to handle slot clearing, interactive pickups, and quick-swapping behaviors via Enhanced Input.</p>
+                        <img src="stacy.gif" class="gif-placeholder">
+                        <img src="slot2.gif" class="gif-placeholder">
+                    </div>
+                    <div class="work-item">
+                        <p><b>Time-Based Brain Rot & Combat Balancing Framework</b></p>
+                        <p>Programmed a modular combat component tied to an independent Brain Rot State Machine. The system uses looping timers to transition the primary slot asset across three tiers: Fresh, Rotting, and Rotten. Each tier applies non-linear modifiers via a structural array: escalating base attack damage by up to +30% while reducing character max velocity by 25%. Implemented an attack-based cleansing trigger that resets status effects upon hitting high-frequency combat thresholds.</p>
+                        <img src="rot.gif" class="gif-placeholder">
+                    </div>
+                    <div class="work-item">
+                        <p><b>Enemy AI (Stacy & Simon Archetypes)</b></p>
+                        <p>Designed and built autonomous AI systems for unique enemy subclasses (Stacy the Ranged Spreader and Simon the Area-Denial Hazard). Developed decoupled behavior logic incorporating AIPerception sensing components. Programmed custom BT Tasks and Decorators to handle distant tactical flanking, area-of-effect projectile spraying (Hairhairspray/Mop attacks), and line-of-sight tracking.</p>
+                        <img src="enemy.gif" class="gif-placeholder">
+                    </div>
+                    <div class="work-item">
+                        <p><b>Interactive UMG UI-Flow & State Optimization</b></p>
+                        <p>Programmed a robust UI workflow utilizing UMG Widget Blueprints to handle full-game loop transitions. Bound screen-space slot graphics to directly monitor the underlying Inventory Component delegates. Programmed modular button event dispatchers across all game menus (Main Menu, Level Selection, In-Game HUD, Pause Menu) to eliminate input blocking and optimize state management.</p>
+
+                        <div class="gif-slider-container">
+                            <div class="gif-slider-wrapper">
+                                <img src="main_menu.gif" class="slider-gif-item active">
+                                <img src="level_ch.gif" class="slider-gif-item">
+                                <img src="widg.gif" class="slider-gif-item">
+                            </div>
+                            <button class="gif-slider-btn prev-gif-btn" onclick="changeGifSlide(-1)">&#10094;</button>
+                            <button class="gif-slider-btn next-gif-btn" onclick="changeGifSlide(1)">&#10095;</button>
+                            <div class="gif-slider-dots">
+                                <span class="gif-dot active" onclick="setGifSlide(0)"></span>
+                                <span class="gif-dot" onclick="setGifSlide(1)"></span>
+                                <span class="gif-dot" onclick="setGifSlide(2)"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК: Контакты -->
+        <div id="contacts" class="content-block">
+            <div class="about-text">
+                <h2>Contacts</h2>
+                <p>Telegram: @thecultofdionysus</p>
+                <p>Mail: aielgasanova@edu.hse.ru / ajzanat.gasanova@yandex.ru</p>
+                <p>Github: @kovervolosatyj</p>
+            </div>
+        </div>
+
+    </div> <!-- Конец блока main-content -->
+
+    <!-- ПОДКЛЮЧАЕМ НАШ ФАЙЛ СО СКРИПТАМИ JS -->
+    <script src="script.js"></script>
+</body>
+</html>
