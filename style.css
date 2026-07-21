@@ -1,0 +1,382 @@
+/* --- БАЗОВЫЕ СТИЛИ САЙТА И КАСТОМНЫЙ КУРСОР --- */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden; /* Предотвращает горизонтальный скролл при анимации */
+
+    /* Кастомный курсор-призрак на весь сайт (работает сразу без скачивания картинок) */
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='48' height='48' style='font-size:32px;'><text y='36'>👻</text></svg>"), auto;
+}
+
+/* Шапка профиля (верхний блок) */
+.header-section {
+    background-color: #1a1a1a;
+    padding: 40px 10%;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #7F00FF;
+    object-fit: cover;
+}
+.profile-info h1 {
+    font-size: 36px;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+.profile-info p {
+    color: #a0a0a0;
+    margin: 0;
+    font-size: 16px;
+}
+
+/* --- ФИОЛЕТОВАЯ ПАНЕЛЬ НАВИГАЦИИ --- */
+.nav-bar {
+    background-color: #7F00FF;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 15px 0;
+}
+.nav-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    /* Курсор-призрак при наведении слегка наклоняется */
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='48' height='48' style='font-size:32px;transform:rotate(-15deg);'><text y='36'>👻</text></svg>"), pointer;
+}
+.nav-btn:hover {
+    color: #111111;
+}
+
+/* Выбранная вкладка: становится черной, без изменения жирности и подчеркиваний */
+.nav-btn.active {
+    text-decoration: none !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+}
+
+/* --- ОБЛАСТЬ КОНТЕНТА --- */
+.main-content {
+    padding: 60px 10%;
+    min-height: 400px;
+}
+.content-block {
+    display: none;
+    opacity: 0;
+}
+.content-block.active {
+    display: block;
+    opacity: 1;
+}
+
+/* --- АНИМАЦИЯ ЭФФЕКТА ВОЛНЫ (УЛЁТ ВПРАВО) --- */
+.slide-out-right {
+    display: block !important;
+    animation: waveEffect 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes waveEffect {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Стили для текста "About me" */
+.about-text h2 {
+    font-size: 40px;
+    text-transform: uppercase;
+    margin: 0 0 20px 0;
+}
+.about-text p {
+    font-size: 18px;
+    color: #cccccc;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* --- СЕТКА КАРТОЧЕК ПОРТФОЛИО --- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+}
+.project-card {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='48' height='48' style='font-size:32px;transform:rotate(-15deg);'><text y='36'>👻</text></svg>"), pointer;
+}
+
+/* Обложка проекта целиком */
+.project-cover {
+    width: 160px;
+    height: 220px;
+    background-color: #222;
+    object-fit: cover;
+    transform-origin: center center;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Анимация плавного игрового покачивания */
+@keyframes coverWobble {
+    0% { transform: scale(1.06) rotate(0deg); }
+    25% { transform: scale(1.06) rotate(-1.5deg); }
+    75% { transform: scale(1.06) rotate(1.5deg); }
+    100% { transform: scale(1.06) rotate(0deg); }
+}
+
+/* Активация покачивания при наведении на карточку */
+.project-card:hover .project-cover {
+    animation: coverWobble 0.6s ease-in-out infinite alternate;
+}
+
+/* Подсветка названия проекта базовым фиолетовым при ховере */
+.project-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+.project-card:hover .project-info h3 {
+    color: #7F00FF;
+}
+.project-info p {
+    color: #aaaaaa;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* --- СТРАНИЦА ДЕТАЛЬНОГО ПРОСМОТРА ПРОЕКТА --- */
+.single-project-view {
+    display: flex;
+    gap: 50px;
+}
+.left-column {
+    width: 250px;
+    flex-shrink: 0;
+}
+.right-column {
+    flex-grow: 1;
+}
+
+/* Большая обложка слева */
+.left-column .project-cover-large {
+    width: 100%;
+    height: 350px;
+    background-color: #222;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Строка с кнопками презентации и трейлера */
+.links-row {
+    display: flex;
+    gap: 10px;
+}
+.action-link {
+    flex: 1;
+    padding: 10px;
+    background-color: #111;
+    border: 1px solid #333;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: background 0.2s, border-color 0.2s;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='48' height='48' style='font-size:32px;transform:rotate(-15deg);'><text y='36'>👻</text></svg>"), pointer;
+}
+.action-link:hover {
+    background-color: #7F00FF;
+    border-color: #7f00ff;
+}
+
+/* Правая колонка с описанием работы */
+.right-column h2 {
+    font-size: 42px;
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+}
+.right-column h4 {
+    font-size: 18px;
+    color: #888;
+    text-transform: uppercase;
+    margin: 0 0 30px 0;
+    letter-spacing: 2px;
+}
+
+/* Блок конкретной задачи и гифки */
+.work-item {
+    margin-bottom: 40px;
+}
+.work-item p {
+    font-size: 16px;
+    color: #ccc;
+    line-height: 1.6;
+    margin: 0 0 15px 0;
+}
+.gif-placeholder {
+    width: 100%;
+    max-width: 600px;
+    height: 320px;
+    background-color: #111;
+    border: 1px solid #222;
+    object-fit: cover;
+}
+
+/* Кнопка "Назад к проектам" настраиваем под фиолетовый стиль */
+.back-btn {
+    background: none;
+    border: 1px solid #7F00FF;
+    color: #7F00FF;
+    padding: 8px 15px;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='48' height='48' style='font-size:32px;transform:rotate(-15deg);'><text y='36'>👻</text></svg>"), pointer;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s;
+}
+.back-btn:hover {
+    background: #7F00FF;
+    color: #000000;
+}
+/* --- ЖИВОЙ ПРИЗРАК В ШАПКЕ САЙТА --- */
+.header-ghost {
+    font-size: 80px; /* Размер эппловского призрака */
+    margin-left: auto; /* Автоматически сдвигает призрака в правый край шапки */
+    user-select: none; /* Чтобы его нельзя было случайно выделить текстом */
+
+    /* Включаем анимацию: название, длительность 2 секунды, плавно туда-обратно, бесконечно */
+    animation: ghostFloat 2s ease-in-out infinite alternate;
+}
+
+/* Эффект плавного парения вверх-вниз */
+@keyframes ghostFloat {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-15px); /* Призрак поднимается на 15 пикселей вверх */
+    }
+}
+/* --- СТИЛИ СЛАЙДЕРА ДЛЯ ГИФОК --- */
+.gif-slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 320px;
+    border: 1px solid #222;
+    background-color: #111;
+    overflow: hidden;
+
+    margin-bottom: 5px;
+}
+
+.gif-slider-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Все гифки скрыты, кроме активной */
+.slider-gif-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.slider-gif-item.active {
+    opacity: 1;
+    position: relative;
+}
+
+/* Кнопки перелистывания */
+.gif-slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #333;
+    color: white;
+    padding: 12px 16px;
+    font-size: 18px;
+    cursor: url('ghost.png') 0 0, pointer; /* Твой призрак останется и на стрелочках! */
+    opacity: 0;
+    transition: opacity 0.3s, background 0.2s, border-color 0.2s;
+    user-select: none;
+}
+
+/* Стрелочки плавно появляются только при наведении на область слайдера */
+.gif-slider-container:hover .gif-slider-btn {
+    opacity: 1;
+}
+
+.gif-slider-btn:hover {
+    background: #7F00FF;
+    border-color: #7F00FF;
+}
+
+.prev-gif-btn { left: 10px; }
+.next-gif-btn { right: 10px; }
+
+/* Фиолетовые точки */
+.gif-slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.gif-dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: url('ghost.png') 0 0, pointer;
+    transition: background-color 0.3s;
+}
+
+.gif-dot.active, .gif-dot:hover {
+    background-color: #7F00FF;
+}
+.ghost-pop-effect {
+    /* На долю секунды подменяем обычное парение на мощный импульс */
+    animation: ghostPop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+@keyframes ghostPop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2); /* Увеличиваем призрака в полтора раза на пике клика */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
