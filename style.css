@@ -380,3 +380,92 @@ body {
         transform: scale(1);
     }
 }
+/* --- АДАПТИВНАЯ ВЕРСТКА ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (ЭКРАНЫ ДО 768px) --- */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Шапка: аватарка и текст встают друг под другом, выравниваем по центру */
+    .header-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 5%;
+        gap: 20px;
+    }
+    .avatar {
+        width: 120px;
+        height: 120px;
+    }
+    
+    /* Убираем призрак-маскот на телефонах, чтобы он не улетал за экран и не мешал кликам */
+    .header-ghost {
+        display: none !important;
+    }
+
+    /* 2. Меню навигации: делаем отступы поменьше, чтобы кнопки не вылезали за края */
+    .nav-bar {
+        gap: 30px;
+        padding: 12px 0;
+    }
+    .nav-btn {
+        font-size: 14px;
+    }
+
+    /* 3. Общая контентная область: сужаем боковые поля, чтобы текст не зажимался */
+    .main-content {
+        padding: 40px 5%;
+    }
+    
+    .about-text h2 {
+        font-size: 32px;
+    }
+
+    /* 4. Витрина портфолио: принудительно переводим сетку в 1 колонку */
+    .portfolio-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px;
+    }
+    .project-card {
+        flex-direction: column; /* Обложка теперь сверху, текст проекта снизу */
+        align-items: center;
+        text-align: center;
+    }
+    .project-cover {
+        width: 100%; /* Обложка растягивается на всю ширину экрана */
+        max-width: 240px; /* Но не становится слишком огромной */
+        height: 320px;
+    }
+
+    /* 5. Детальный вид проекта: обложка с кнопками уходит наверх, описание работы — вниз */
+    .single-project-view {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .left-column {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto; /* Центрируем левую колонку на экране */
+    }
+    .left-column .project-cover-large {
+        height: 380px;
+    }
+    
+    .right-column h2 {
+        font-size: 32px;
+        text-align: center;
+    }
+    .right-column h4 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* 6. Адаптируем слайдер и гифки под размер экрана смартфона */
+    .gif-slider-container, .gif-placeholder {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 600 / 320; /* Сохраняем правильные пропорции 16:9, чтобы гифки не сжимались */
+    }
+    
+    .gif-slider-btn {
+        padding: 8px 12px; /* Уменьшаем стрелочки, чтобы они не перекрывали весь экран */
+        font-size: 16px;
+    }
+}
